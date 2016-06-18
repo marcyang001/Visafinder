@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Application</title>
+
+
+    <!-- Custom Fonts -->
+ 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="survey" ng-controller="formCtrl" id="question">
+        <ng-form name="VFform" ng-submit="submitFunc()">
+        What country you want to go to?<br>
+        <select name="des" ng-model="user.des" required>
+            <option value="USA">USA</option>
+            <option value="China">China</option>
+        </select>
+        <span id="notice1"></span>
+        <br>
+
+        What passport do you have?<br>
+        <select name="country" ng-repeat="x in countries" ng-model="user.passport" required>
+            <option value=" {{x}} "> {{x}}</option>
+        </select>
+        <span id="notice2"></span>
+        <br>
+
+        How long you are staying for?<br>
+        <select name="duration" ng-model="user.duration" required>
+            <option value="1">Less than two weeks </option>
+            <option value="2">Between two weeks and two months</option>
+            <option value="3">Greater than two months</option>
+        </select>
+        <span id="notice3"></span>
+        <br><br>
+        <input type="submit">
+        </ng-form>
+    </div>
+
+</body>
+
+<script>
+    var app=angular.module('survey',[]);
+    app.controller('formCtrl', function($scope, $http){
+        $http.get("ADDRESS OF THE COUNTRIES DATA")
+        .then(function (response) {$scope.countries = response.data.records;});
+
+        $scope.submitFunc=function(){
+            
+
+        }
+    })
+</script>
+</html>
