@@ -31,6 +31,16 @@ app.get('/',function (request, response) {
 
 });
 
+app.post('/application', function(req, res) {
+  console.log(req.query);
+
+
+});
+
+
+
+
+
 /* serves all the static files */
  app.get(/^(.+)$/, function(req, res){ 
      console.log('other files : ' + req.params);

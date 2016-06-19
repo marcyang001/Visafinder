@@ -11,17 +11,9 @@
 
     <title>Application</title>
 
-<!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/grayscale.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-
+ 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,58 +23,31 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">Logo</span> Here 
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <div ng-app="survey" ng-controller="formCtrl" id="question">
+<body>
+    <div ng-app="survey" ng-controller="formCtrl" id="question" ng-init="q1=true">
         <ng-form name="VFform" ng-submit="submitFunc()">
-        What country do you want to go to?<br>
+        
+        <div ng-show="q1">
+        What country you want to go to?<br>
         <select name="des" ng-model="user.des" required>
             <option value="USA">USA</option>
             <option value="China">China</option>
         </select>
         <span id="notice1"></span>
         <br>
+        </div>
 
+        <div ng-show="user.des">
         What passport do you have?<br>
-        <select name="country" ng-repeat="x in countries" ng-model="user.passport" required>
-            <option value=" {{x}} "> {{x}}</option>
+        <select name="country" ng-model="user.passport" required>
+            <option ng-repeat="x in countries" value=" {{x.name}} "> {{x.name}}</option>
         </select>
         <span id="notice2"></span>
         <br>
+        </div>
 
-        How long are you staying for?<br>
+        <div ng-show="user.passport">
+        How long you are staying for?<br>
         <select name="duration" ng-model="user.duration" required>
             <option value="1">Less than two weeks </option>
             <option value="2">Between two weeks and two months</option>
@@ -90,7 +55,11 @@
         </select>
         <span id="notice3"></span>
         <br><br>
-        <input type="submit" class="submitStyle">
+        </div>
+
+        <div ng-show="user.duration">
+        <input type="submit">
+        </div>
         </ng-form>
     </div>
 
@@ -99,8 +68,12 @@
 <script>
     var app=angular.module('survey',[]);
     app.controller('formCtrl', function($scope, $http){
-        $http.get("ADDRESS OF THE COUNTRIES DATA")
-        .then(function (response) {$scope.countries = response.data.records;});
+        $scope.countries=[{
+    "name": "USA"
+}, {
+    "name": "Canada"
+}]
+    
 
         $scope.submitFunc=function(){
             
@@ -108,4 +81,5 @@
         }
     })
 </script>
+
 </html>
