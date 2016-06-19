@@ -19,16 +19,26 @@ $(function(){
                             console.log(data);
 
                             var output, i;
-                            output="<ul><li><strong>Application Fee:</strong> "+data[0].cost+"</li>"+
+                            var cost = 0;
+                            if (data[0] != undefined) {
+                                cost = data[0].cost;
+                            }
+
+                            output="<ul><li><strong>Application Fee:</strong> "+cost+"</li>"+
                                     "<li><strong>Required Forms:</strong></li>";
-                            var forms=data[0]["requiredocs"].split(',');
+                            
+                            if (data[0] != undefined) {
+                                var forms=data[0]["requiredocs"].split(',');
+
 
                             
-                            output+="<ul>";
-                            forms.map(function(item) {
-                                output=output+"<li>"+item+"</li>";
-                            });
-                            output+="</ul>";
+                                output+="<ul>";
+                                forms.map(function(item) {
+                                    output=output+"<li>"+item+"</li>";
+                                });
+                                output+="</ul>";
+                                
+                            }
                             output+="</ul>";
                             
                             document.getElementById("result").innerHTML=output;
