@@ -16,7 +16,7 @@
 var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
-
+var mysql = require('mysql');
 // create application/json parser 
 var jsonParser = bodyParser.json()
 
@@ -40,19 +40,52 @@ app.get('/',function (request, response) {
 
 
 app.get('/endpoint', urlencodedParser, function(req, res){
-  var obj = {};
+  
+
+
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'myang33',
+    database : 'visafinder'
+  });
+
   console.log(req.query);
-  res.send(req.body);
+
+
+  connection.connect(function(err){
+  if(!err) {
+      console.log("Database is connected ... nn");    
+  } else {
+      console.log("Error connecting database ... nn");    
+  }
+  });
+  connection.query('SELECT * from Destination', function(err, rows, fields) {
+    if (!err){
+      //console.log('The solution is: ', rows);
+      res.send(rows);
+
+    }
+      
+    else {
+      console.log('Error while performing Query.');
+    }
+    
+  });
+
+  
+
+
+
 });
 
 
-
-
 /* serves all the static files */
- app.get(/^(.+)$/, function(req, res){ 
-     console.log('other files : ' + req.params);
-     res.sendFile( __dirname +"/html/"+ req.params[0]); 
- });
+app.get(/^(.+)$/, function(req, res){ 
+    console.log('other files : ' + req.params);
+    res.sendFile( __dirname +"/html/"+ req.params[0]); 
+});
+
 
 
 

@@ -16,10 +16,13 @@ $(function(){
                         url: '/endpoint',                   
                         success: function(data) {
                             console.log('success');
+                            console.log(data);
+                            
+
                         }
                     });
-                    
-                    
+
+
 
 
                 });             
