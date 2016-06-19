@@ -16,6 +16,7 @@
 var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
+app.enable('trust proxy');
 var mysql = require('mysql');
 // create application/json parser 
 var jsonParser = bodyParser.json()
@@ -43,12 +44,19 @@ app.get('/endpoint', urlencodedParser, function(req, res){
   
 
   var connection = mysql.createConnection({
-    host     : '107.178.220.226',
-    user     : 'root',
-    password : 'myang33',
-    database : 'visafinder'
+    host: "107.178.220.226",
+    user: "root",
+    password: "myang33",
+    database: "visafinder"
   });
 
+  /*
+  MYSQL_HOST: 107.178.220.226
+  MYSQL_USER: root
+  MYSQL_PASSWORD: myang33
+  MYSQL_DATABASE: visafinder
+
+  */
   console.log(req.query);
 
   var query = "SELECT RequireDocs.Cost * "+req.query.duration+" as cost, RequireDocs.Requred_Doc as requiredocs \
