@@ -1,8 +1,8 @@
 {
-  "name": "nodejs-getting-started",
+  "name": "10xsoccerperformance",
   "version": "1.0.0",
-  "description": "End to end sample for running Node.JS applications on Google Cloud Platform",
-  "repository": "https://github.com/GoogleCloudPlatform/nodejs-getting-started",
+  "description": "Website for 10X Soccer Performance",
+  "repository": "https://github.com/marcyang001/10xsoccerperformance",
   "private": true,
   "scripts": {
     "start": "node app.js",
@@ -12,24 +12,18 @@
     "mocha": "mocha test/index.js -t 30000",
     "test": "npm run lint && npm run mocha"
   },
-  "author": "Google Inc.",
+  "author": "10X Soccer Performance",
   "contributors": [
     {
-      "name": "Jon Wayne Parrott",
-      "email": "jonwayne@google.com"
-    },
-    {
-      "name": "Jonathan Simon",
-      "email": "jbsimon@google.com"
-    },
-    {
-      "name": "Jason Dobry",
-      "email": "jdobry@google.com"
+      "name": "Marc Yang",
+      "email": "m.y.yang001@gmail.com"
     }
   ],
   "license": "Apache Version 2.0",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "body-parser": "^1.9.2",
+    "mailgun": "^0.5.0"
   },
   "devDependencies": {
     "jshint": "^2.9.1",

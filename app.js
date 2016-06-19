@@ -14,13 +14,19 @@
 'use strict';
 
 var express = require('express');
-
+var bodyParser = require('body-parser')
 var app = express();
 
+// create application/json parser 
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 function getClientAddress(req) {
   return req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
 }
 
 
@@ -31,12 +37,13 @@ app.get('/',function (request, response) {
 
 });
 
-app.post('/application', function(req, res) {
+
+
+app.get('/endpoint', urlencodedParser, function(req, res){
+  var obj = {};
   console.log(req.query);
-
-
+  res.send(req.body);
 });
-
 
 
 

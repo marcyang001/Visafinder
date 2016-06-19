@@ -20,47 +20,51 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="jquery/ajax.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
 
 <body>
     <div ng-app="survey" ng-controller="formCtrl" id="question" ng-init="q1=true">
-        <ng-form name="VFform" ng-submit="submitFunc()">
+        <form name="VFform" method="POST">
         
-        <div ng-show="q1">
-        What country you want to go to?<br>
-        <select name="des" ng-model="user.des" required>
-            <option value="USA">USA</option>
-            <option value="China">China</option>
-        </select>
-        <span id="notice1"></span>
-        <br>
-        </div>
+            <div ng-show="q1">
+            What country you want to go to?<br>
+            <select id="destination" name="des" ng-model="user.des" required>
+                <option value="USA">USA</option>
+                <option value="China">China</option>
+                
+            </select>
+            <span id="notice1"></span>
+            <br>
+            </div>
 
-        <div ng-show="user.des">
-        What passport do you have?<br>
-        <select name="country" ng-model="user.passport" required>
-            <option ng-repeat="x in countries" value=" {{x.name}} "> {{x.name}}</option>
-        </select>
-        <span id="notice2"></span>
-        <br>
-        </div>
+            <div ng-show="user.des">
+            What passport do you have?<br>
+            <select id="passport" name="country" ng-model="user.passport" required>
+                <option ng-repeat="x in countries" value=" {{x.name}} "> {{x.name}}</option>
+            </select>
+            
+            <span id="notice2"></span>
+            <br>
+            </div>
+            
+            <div ng-show="user.passport">
+            How long you are staying for?<br>
+            <select id="duration" name="duration" ng-model="user.duration" required>
+                <option value="1">Less than one month </option>
+                <option value="2">Between two weeks and two months</option>
+                <option value="3">Greater than two months</option>
+            </select>
+            <span id="notice3"></span>
+            <br><br>
+            </div>
 
-        <div ng-show="user.passport">
-        How long you are staying for?<br>
-        <select name="duration" ng-model="user.duration" required>
-            <option value="1">Less than two weeks </option>
-            <option value="2">Between two weeks and two months</option>
-            <option value="3">Greater than two months</option>
-        </select>
-        <span id="notice3"></span>
-        <br><br>
-        </div>
-
-        <div ng-show="user.duration">
-        <input type="submit">
-        </div>
-        </ng-form>
+            <div ng-show="user.duration">
+            <input type="submit" id="submitButton">
+            </div>
+        </form>
     </div>
 
 </body>
@@ -69,14 +73,15 @@
     var app=angular.module('survey',[]);
     app.controller('formCtrl', function($scope, $http){
         $scope.countries=[{
-    "name": "USA"
-}, {
-    "name": "Canada"
-}]
+            "name": "USA"
+            }, {
+                "name": "Canada"
+            }]
     
 
         $scope.submitFunc=function(){
             
+            console.log("enter here");
 
         }
     })

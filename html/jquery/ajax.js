@@ -1,19 +1,26 @@
-// this is the id of the form
+$(function(){               
+                $('#submitButton').click(function(e){
+                    e.preventDefault();
+                    console.log('submit clicked');
 
-/*
-var frm = $('#submitButton');
-    frm.submit(function (ev) {
-        ev.preventDefault();
-        url = "/application";
+                    var data = {};
+                    data.destination = $('#destination option:selected').val();
+                    data.passport = $('#passport option:selected').val();
+                    data.duration = $('#duration option:selected').val();
+                    
 
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: $("#submitButton").serialize(), // serializes the form's elements.
-            success: function (data) {
-                alert('ok');
-            }
-        });
+                    $.ajax({
+                        type: 'GET',
+                        data: data,
+                        contentType: 'application/json',
+                        url: '/endpoint',                   
+                        success: function(data) {
+                            console.log('success');
+                        }
+                    });
+                    
+                    
 
-        
-    });*/
+
+                });             
+            });
