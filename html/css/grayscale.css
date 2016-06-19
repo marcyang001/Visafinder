@@ -329,6 +329,8 @@ a:focus {
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
+    position: relative;
+    left: 100px;
 }
 
 ul.banner-social-buttons {

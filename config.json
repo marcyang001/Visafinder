@@ -1,0 +1,7 @@
+{
+  "GCLOUD_PROJECT": "visafinder-1346",
+  "DATA_BACKEND": "cloudsql",
+  "MYSQL_USER": "root",
+  "MYSQL_PASSWORD": "myang33",
+  "MYSQL_HOST": "107.178.220.226"
+}
