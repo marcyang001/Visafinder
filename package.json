@@ -1,8 +1,8 @@
 {
-  "name": "10xsoccerperformance",
+  "name": "visafinder",
   "version": "1.0.0",
   "description": "Website for 10X Soccer Performance",
-  "repository": "https://github.com/marcyang001/10xsoccerperformance",
+  "repository": "https://github.com/marcyang001/Visafinder",
   "private": true,
   "scripts": {
     "start": "node app.js",
