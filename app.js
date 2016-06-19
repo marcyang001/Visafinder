@@ -42,9 +42,8 @@ app.get('/',function (request, response) {
 app.get('/endpoint', urlencodedParser, function(req, res){
   
 
-
   var connection = mysql.createConnection({
-    host     : 'localhost',
+    host     : '107.178.220.226',
     user     : 'root',
     password : 'myang33',
     database : 'visafinder'
@@ -52,15 +51,14 @@ app.get('/endpoint', urlencodedParser, function(req, res){
 
   console.log(req.query);
 
+  var query = "SELECT RequireDocs.Cost * "+req.query.duration+" as cost, RequireDocs.Requred_Doc as requiredocs \
+        FROM RequireDocs \
+        JOIN Destination ON Destination.dID = RequireDocs.DestId \
+        JOIN Passport ON Passport.pID = RequireDocs.PassId \
+        WHERE Destination.Country = \""+ req.query.destination +"\" AND Passport.Country = \""+req.query.passport + "\""
 
-  connection.connect(function(err){
-  if(!err) {
-      console.log("Database is connected ... nn");    
-  } else {
-      console.log("Error connecting database ... nn");    
-  }
-  });
-  connection.query('SELECT * from Destination', function(err, rows, fields) {
+
+  connection.query(query, function(err, rows, fields) {
     if (!err){
       //console.log('The solution is: ', rows);
       res.send(rows);
@@ -68,14 +66,10 @@ app.get('/endpoint', urlencodedParser, function(req, res){
     }
       
     else {
-      console.log('Error while performing Query.');
+      console.log(err);
     }
     
   });
-
-  
-
-
 
 });
 

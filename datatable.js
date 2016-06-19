@@ -1,7 +1,7 @@
 var express    = require("express");
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : '107.178.220.226',
   user     : 'root',
   password : 'myang33',
   database : 'visafinder'
@@ -18,16 +18,23 @@ if(!err) {
 
 
 app.get("/",function(req,res){
-connection.query('SELECT * from Destination', function(err, rows, fields) {
-  if (!err){
-  	console.log('The solution is: ', rows);
-  }
-    
-  else {
-  	console.log('Error while performing Query.');
-  }
-    
-  });
+
+	var query = "SELECT * \
+				FROM RequireDocs \
+				JOIN Destination ON Destionation.dID = RequireDocs.DestId \
+				JOIN Passport ON Passport.pID = RequireDocs.PassId \
+				WHERE Destination.Country = "+ req.query.destination +" AND Passport.Country = "+req.query.passport
+
+	connection.query('SELECT * from Destination', function(err, rows, fields) {
+	  if (!err){
+	  	console.log('The solution is: ', rows);
+	  }
+	    
+	  else {
+	  	console.log('Error while performing Query.');
+	  }
+	    
+	  });
 });
 
 app.listen(3000);

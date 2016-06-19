@@ -15,6 +15,7 @@ CREATE TABLE RequireDocs
 	ID INT NOT NULL AUTO_INCREMENT,
 	DestId INT,
 	PassId INT,
+	Cost INT,
 	Requred_Doc VARCHAR(800),
 	PRIMARY KEY (ID),
 	FOREIGN KEY (DestId) REFERENCES Destination(dID),
