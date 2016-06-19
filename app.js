@@ -14,13 +14,19 @@
 'use strict';
 
 var express = require('express');
-
+var bodyParser = require('body-parser')
 var app = express();
 
+// create application/json parser 
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 function getClientAddress(req) {
   return req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
 }
 
 
@@ -30,6 +36,23 @@ app.get('/',function (request, response) {
 	response.sendFile( __dirname + '/html/index.html')
 
 });
+
+
+
+app.get('/endpoint', urlencodedParser, function(req, res){
+  var obj = {};
+  console.log(req.query);
+  var response = {};
+  response.cost = 30;
+  response.requiredDoc = ["Visa form","Education form"];
+
+
+  res.send(response);
+  res.end();
+});
+
+
+
 
 /* serves all the static files */
  app.get(/^(.+)$/, function(req, res){ 
