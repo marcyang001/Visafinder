@@ -11,8 +11,13 @@
 
     <title>Application</title>
 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
     <!-- Custom Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
  
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,52 +25,101 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
     <script src="jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script src="jquery/ajax.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
 
-<body>
-    <div ng-app="survey" ng-controller="formCtrl" id="question" ng-init="q1=true">
-        <form name="VFform" method="POST">
-        
-            <div ng-show="q1">
-            What country you want to go to?<br>
-            <select id="destination" name="des" ng-model="user.des" required>
-                <option value="USA">USA</option>
-                <option value="China">China</option>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="index.html#page-top">
+                    <i class="fa fa-play-circle"></i>  <span class="light">Visa</span> Finder 
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="application.html">Get Visa</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="index.html#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="index.html#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <header class="formIntro">
+            <div ng-app="survey" ng-controller="formCtrl" id="question" ng-init="q1=true" class="formstyle">
+                <form name="VFform" method="POST">
                 
-            </select>
-            <span id="notice1"></span>
-            <br>
-            </div>
+                    <div ng-show="q1">
+                    What country you want to go to?<br>
+                    <div class="select-style">
+                    <select id="destination" name="des" ng-model="user.des" required>
+                        <option value="China">China</option>
+                        <option value="USA">USA</option>
+                        <option value="Peru">Peru</option>
+                    </select>
+                    <span id="notice1"></span>
+                    <br>
+                    </div>
+                    </div>
 
-            <div ng-show="user.des">
-            What passport do you have?<br>
-            <select id="passport" name="country" ng-model="user.passport" required>
-                <option ng-repeat="x in countries" value=" {{x.name}} "> {{x.name}}</option>
-            </select>
-            
-            <span id="notice2"></span>
-            <br>
-            </div>
-            
-            <div ng-show="user.passport">
-            How long you are staying for?<br>
-            <select id="duration" name="duration" ng-model="user.duration" required>
-                <option value="1">Less than one month </option>
-                <option value="2">Between two weeks and two months</option>
-                <option value="3">Greater than two months</option>
-            </select>
-            <span id="notice3"></span>
-            <br><br>
-            </div>
+                    <div ng-show="user.des">
+                    What passport do you have?<br>
+                    <div class="select-style">
+                    <select id="passport" name="country" ng-model="user.passport" required>
+                        <option ng-repeat="x in countries" value=" {{x.name}} "> {{x.name}}</option>
+                    </select>
+                    </div>
+                    <span id="notice2"></span>
+                    <br>
+                    </div>
+                    
+                    <div ng-show="user.passport">
+                    How long you are staying for?<br>
+                    <div class="select-style">
+                    <select id="duration" name="duration" ng-model="user.duration" required>
+                        <option value="1">Less than one month </option>
+                        <option value="2">Between two weeks and two months</option>
+                        <option value="3">Greater than two months</option>
+                    </select>
+                    </div>
+                    <span id="notice3"></span>
+                    <br><br>
+                    </div>
 
-            <div ng-show="user.duration">
-            <input type="submit" id="submitButton">
-            </div>
-        </form>
-    </div>
+                    <div ng-show="user.duration">
+                    <input type="submit" id="submitButton" class="select-style">
+                    </div>
+                </form>
+        </div>
+        <BR></BR>
+
+        </div>
+    </header>
+    <div id="result" class="resultStyle">
+
+    
 
 </body>
 
@@ -73,9 +127,11 @@
     var app=angular.module('survey',[]);
     app.controller('formCtrl', function($scope, $http){
         $scope.countries=[{
-            "name": "USA"
+            "name": "China"
             }, {
-                "name": "Canada"
+                "name": "USA"
+            }, {
+                "name": "Peru"
             }]
     
 

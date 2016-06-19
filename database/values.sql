@@ -18,15 +18,20 @@ INSERT INTO Passport
 VALUES ("Peru");
 INSERT RequireDocs
 (DestId, PassId, Cost, Requred_Doc)
-VALUES (1, 2, 160, "http://www.ustraveldocs.com/cn/cn-niv-typeb1b2.asp#ApplicationItems");
+VALUES (1, 2, 160, "Nonimmigrant Visa Electronic Application (DS-160) form,Criminal Background Check,Employment History,Current relationship status,property");
 INSERT RequireDocs
 (DestId, PassId, Cost, Requred_Doc)
-VALUES (1, 3, 50, "https://peru.travisa.com/");
+VALUES (1, 3, 50, "Peruvian Visa Application Form,photos,Letter Of Invitation from Peru,Proof of departure,Hotel confirmation,Criminal Record");
 INSERT RequireDocs
 (DestId, PassId, Cost, Requred_Doc)
-VALUES (2, 1, 160, "https://www.visaforchina.org/MTL_EN/generalinformation/downloads/index.shtml");
+VALUES (2, 1, 160, "Chinese Visa Application Form,Payment Authorization Form,LETTER OF INVITATION (FOR Q1, Q2, S1,S2 VISA)");
 INSERT RequireDocs
 (DestId, PassId, Cost, Requred_Doc)
-VALUES (2, 3, 160, "http://www.limaeasy.com/peru-info/peruvian-visa");
-
+VALUES (2, 3, 160, "Passport valid at least 6 months,Valid (tourist) visa at the time of application,For Students: Enrollment certification issued by a recognized educational institution,Proof of sufficient financial resources to fund your studies or internship in Peru,Application form and fee");
+INSERT RequireDocs
+(DestId, PassId, Cost, Requred_Doc)
+VALUES (3, 1, 160, "Chinese Visa Application Form,Payment Authorization Form,LETTER OF INVITATION (FOR Q1, Q2, S1,S2 VISA)");
+INSERT RequireDocs
+(DestId, PassId, Cost, Requred_Doc)
+VALUES (3, 2, 160, "Nonimmigrant Visa Electronic Application (DS-160) form,Criminal Background Check,Employment History,Current relationship status,property");
 
