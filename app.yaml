@@ -12,7 +12,7 @@
 # limitations under the License.
 #
 # [START runtime]
-runtime: nodejs
+runtime: custom
 vm: true
 # [END runtime]
 beta_settings:
